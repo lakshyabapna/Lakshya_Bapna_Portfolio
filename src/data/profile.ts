@@ -49,7 +49,7 @@ export const PROFILE_DATA: ProfileData = {
     github: 'https://github.com/lakshyabapna',
     linkedin: 'https://www.linkedin.com/in/lakshya-bapna-73bb50323/',
     dvaPortfolio: 'https://lakshyabapna.github.io/DVA-Portfolio/#',
-    resumeUrl: null, // Ready for resume PDF attachment
+    resumeUrl: '/Lakshya_Bapna_Resume.pdf',
     email: 'lakshyabapna03@gmail.com'
   },
   coreStrengths: [
