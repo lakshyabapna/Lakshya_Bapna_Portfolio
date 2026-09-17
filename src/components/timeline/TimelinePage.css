@@ -1,0 +1,677 @@
+/* ============================================================
+   TIMELINE PAGE — DAYLIGHT STADIUM EXPERIENCE (PHASE 6.12)
+   Cinematic football-season journey over authentic daylight stadium
+   ============================================================ */
+
+/* ── Root Container (Transparent over StadiumAtmosphere) ── */
+.lb-timeline-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: transparent;
+  overflow-x: hidden;
+  padding-bottom: 5rem;
+  box-sizing: border-box;
+}
+
+/* Local background layer neutralized in favor of shared StadiumAtmosphere */
+.lb-timeline-bg-layer,
+.lb-timeline-atmosphere {
+  display: none;
+}
+
+/* ============================================================
+   3. AMBIENT EDITORIAL PHRASES
+   ============================================================ */
+.lb-timeline-ambient-phrases {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lb-ambient-phrase {
+  position: absolute;
+  font-family: var(--font-handwriting, 'Caveat', cursive, sans-serif);
+  color: rgba(255, 255, 255, 0.22);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  user-select: none;
+  pointer-events: none;
+}
+
+.lb-ambient-phrase--tl {
+  top: 140px;
+  left: 32px;
+  transform: rotate(-6deg);
+}
+
+.lb-ambient-phrase--br {
+  bottom: 90px;
+  right: 36px;
+  text-align: right;
+  transform: rotate(4deg);
+}
+
+@media (max-width: 1024px) {
+  .lb-ambient-phrase {
+    display: none;
+  }
+}
+
+/* ============================================================
+   4. CONTENT WRAPPER
+   ============================================================ */
+.lb-timeline-content-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 6.5rem 1.5rem 3rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ============================================================
+   5. EDITORIAL HEADER
+   ============================================================ */
+.lb-timeline-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-timeline-header--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lb-timeline-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  color: #34D399;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .lb-timeline-eyebrow-sep,
+  .lb-timeline-eyebrow-season {
+    display: none;
+  }
+}
+
+.lb-timeline-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  flex-shrink: 0;
+}
+
+.lb-timeline-eyebrow-sep {
+  opacity: 0.45;
+}
+
+.lb-timeline-eyebrow-season {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lb-timeline-title {
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.035em;
+  margin: 1rem 0 0.8rem 0;
+  line-height: 1.12;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+}
+
+.lb-timeline-subtitle {
+  font-size: clamp(0.95rem, 1.25vw, 1.12rem);
+  color: rgba(226, 232, 240, 0.84);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   6. CENTRAL TIMELINE TRACK & SPINDLE
+   ============================================================ */
+.lb-timeline-track {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 1.5rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Vertical Pitch Touchline Spine */
+.lb-timeline-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.lb-spine-line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 185, 129, 0.15) 0%,
+    rgba(16, 185, 129, 0.75) 10%,
+    rgba(16, 185, 129, 0.75) 90%,
+    rgba(16, 185, 129, 0.15) 100%
+  );
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+.lb-timeline-events {
+  display: flex;
+  flex-direction: column;
+  gap: 3.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Row Layout */
+.lb-timeline-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-timeline-row--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lb-timeline-row--left {
+  justify-content: flex-start;
+}
+
+.lb-timeline-row--right {
+  justify-content: flex-end;
+}
+
+/* ============================================================
+   7. SPINE BALL NODE
+   ============================================================ */
+.lb-timeline-node {
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.lb-node-ball {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #071324;
+  color: #10B981;
+  border: 2px solid rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
+  transition: all 0.3s ease;
+}
+
+.lb-node-ball--current {
+  color: #34D399;
+  border-color: #10B981;
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.75), inset 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================================
+   8. TRANSLUCENT STADIUM TIMELINE CARD (TITANIUM DOSSIER PANEL)
+   ============================================================ */
+.lb-timeline-card {
+  width: calc(50% - 46px);
+  max-width: calc(50% - 46px);
+  position: relative;
+  background: rgba(7, 19, 36, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  padding: 1.85rem;
+  box-sizing: border-box;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 14px 36px rgba(0, 0, 0, 0.45);
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Top Glow Edge Line */
+.lb-card-glow-edge {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.5), transparent);
+}
+
+/* Horizontal Tactical Connector to central spine on desktop */
+@media (min-width: 861px) {
+  .lb-timeline-row--left .lb-timeline-card::after {
+    content: '';
+    position: absolute;
+    top: 27px;
+    right: -46px;
+    width: 46px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.5), rgba(16, 185, 129, 0.15));
+    pointer-events: none;
+    transition: background 0.25s ease;
+  }
+
+  .lb-timeline-row--right .lb-timeline-card::after {
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: -46px;
+    width: 46px;
+    height: 2px;
+    background: linear-gradient(270deg, rgba(16, 185, 129, 0.5), rgba(16, 185, 129, 0.15));
+    pointer-events: none;
+    transition: background 0.25s ease;
+  }
+
+  .lb-timeline-row--left .lb-timeline-card:hover::after,
+  .lb-timeline-row--right .lb-timeline-card:hover::after {
+    background: rgba(16, 185, 129, 0.85);
+  }
+}
+
+.lb-timeline-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 18px 44px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(16, 185, 129, 0.14);
+}
+
+.lb-timeline-row--current .lb-timeline-card {
+  border-color: rgba(16, 185, 129, 0.40);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 16px 40px rgba(0, 0, 0, 0.50),
+    0 0 24px rgba(16, 185, 129, 0.16);
+}
+
+/* Card Top Row */
+.lb-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.lb-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.lb-card-season-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #34D399;
+  background: rgba(8, 26, 20, 0.85);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.04em;
+}
+
+.lb-card-period {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94A3B8;
+}
+
+.lb-card-icon {
+  color: #64748B;
+}
+
+.lb-card-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #CBD5E1;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.lb-card-badge--current {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34D399;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Card Title & Institution */
+.lb-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.35rem 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.lb-card-inst {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #34D399;
+  margin-bottom: 0.85rem;
+}
+
+.lb-card-summary {
+  font-size: 0.92rem;
+  color: rgba(226, 232, 240, 0.88);
+  line-height: 1.62;
+  margin: 0;
+}
+
+/* Photo slot when available */
+.lb-timeline-photo-container {
+  margin-top: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  max-height: 220px;
+}
+
+.lb-timeline-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Key Highlights / Achievements */
+.lb-card-achievements {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lb-achievements-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #FBBF24;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+
+.lb-trophy-icon {
+  color: #FBBF24;
+}
+
+.lb-achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lb-achievement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  color: rgba(203, 213, 225, 0.86);
+  line-height: 1.48;
+}
+
+.lb-item-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+/* ============================================================
+   9. FINAL CLOSING CTA
+   ============================================================ */
+.lb-timeline-footer-wrap {
+  margin-top: 4.5rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lb-timeline-footer--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lb-timeline-footer-card {
+  max-width: 860px;
+  margin: 0 auto;
+  background: rgba(7, 19, 36, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-sizing: border-box;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.lb-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #34D399;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.lb-timeline-footer-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.lb-timeline-footer-desc {
+  font-size: 0.92rem;
+  color: rgba(226, 232, 240, 0.82);
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.lb-timeline-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lb-timeline-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
+  filter: brightness(1.08);
+}
+
+/* ============================================================
+   10. RESPONSIVE DESIGN (TABLET & MOBILE)
+   ============================================================ */
+@media (max-width: 860px) {
+  .lb-timeline-content-wrap {
+    padding: 5.5rem 1rem 3rem 1rem;
+  }
+
+  .lb-timeline-spine {
+    left: 20px;
+    transform: none;
+  }
+
+  .lb-timeline-node {
+    left: 20px;
+    top: 24px;
+    transform: translate(-50%, 0);
+  }
+
+  .lb-timeline-row--left,
+  .lb-timeline-row--right {
+    justify-content: flex-start;
+    padding-left: 44px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2.75rem;
+  }
+
+  .lb-timeline-card {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* Slightly more opaque for peak readability on mobile */
+    background: rgba(7, 16, 26, 0.88);
+    padding: 1.4rem;
+  }
+
+  .lb-timeline-footer-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem;
+    gap: 1.5rem;
+  }
+
+  .lb-timeline-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .lb-timeline-content-wrap {
+    padding: 5rem 0.75rem 3rem 0.75rem;
+  }
+
+  .lb-timeline-spine {
+    left: 14px;
+  }
+
+  .lb-timeline-node {
+    left: 14px;
+    top: 20px;
+  }
+
+  .lb-timeline-row--left,
+  .lb-timeline-row--right {
+    padding-left: 36px;
+    margin-bottom: 2rem;
+  }
+
+  .lb-node-ball {
+    width: 28px;
+    height: 28px;
+  }
+
+  .lb-timeline-card {
+    padding: 1.15rem;
+    border-radius: 15px;
+  }
+
+  .lb-card-title {
+    font-size: 1.12rem;
+  }
+
+  .lb-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .lb-card-meta {
+    gap: 0.4rem;
+  }
+}

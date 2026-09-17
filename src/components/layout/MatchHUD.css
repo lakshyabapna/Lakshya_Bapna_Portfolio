@@ -1,0 +1,385 @@
+/* ============================================================
+   MATCH HUD STYLES (PHASE 6.5 — TRANSPARENT HERO MODE)
+   ============================================================ */
+
+.lb-hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.85rem 1.5rem;
+  background-color: rgba(250, 250, 249, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero-active: fully transparent, no border, floats over the stadium */
+.lb-hud--hero {
+  background-color: transparent !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+  animation: lb-hud-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes lb-hud-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lb-hud--hero .lb-hud__name {
+  color: #FFFFFF;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8);
+}
+
+.lb-hud--hero .lb-hud__role {
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+}
+
+.lb-hud--hero .lb-hud__monogram-wrap {
+  color: #FFFFFF;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7));
+}
+
+.lb-hud--hero .lb-hud__nav {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 9999px;
+  padding: 4px 6px;
+}
+
+.lb-hud--hero .lb-hud__nav-link {
+  color: #334155;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.35rem 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.lb-hud--hero .lb-hud__nav-link:hover {
+  color: #0F172A;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.lb-hud--hero .lb-hud__nav-link--active {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.lb-hud--hero .lb-hud__live-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #065F46;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.lb-hud--hero .lb-hud__btn-action {
+  background: #0F172A;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.lb-hud--hero .lb-hud__btn-action:hover {
+  background: #1E293B;
+  transform: translateY(-1px);
+}
+
+.lb-hud--hero .lb-hud__mobile-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+/* Scrolled state: solid, always above content */
+.lb-hud--scrolled {
+  background-color: rgba(255, 255, 255, 0.97);
+  border-bottom-color: var(--border-medium);
+  box-shadow: var(--shadow-subtle);
+  padding: 0.7rem 1.5rem;
+}
+
+.lb-hud__container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Brand / Crest */
+.lb-hud__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.lb-hud__crest {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #141820 0%, #0B0E14 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+  transition: all 0.3s ease;
+}
+
+.lb-hud__crest-pip {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 4px;
+  height: 4px;
+  background: #10B981;
+  border-radius: 1px;
+  box-shadow: 0 0 5px rgba(16, 185, 129, 0.85);
+}
+
+.lb-hud__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-hud__name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.35s ease;
+}
+
+.lb-hud__role {
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  line-height: 1.2;
+  margin-top: 1px;
+  transition: color 0.35s ease;
+}
+
+/* Desktop Navigation */
+.lb-hud__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--bg-elevated);
+  padding: 0.3rem 0.4rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.35s ease;
+}
+
+@media (max-width: 900px) {
+  .lb-hud__nav {
+    display: none;
+  }
+}
+
+.lb-hud__nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.38rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  letter-spacing: 0.025em;
+}
+
+.lb-hud__nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.lb-hud__nav-link--active {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+/* Actions */
+.lb-hud__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Live status badge (replaces match-clock pill) */
+.lb-hud__live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  background: var(--pitch-green-bg);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--pitch-green-deep);
+  letter-spacing: 0.08em;
+  transition: all 0.35s ease;
+}
+
+.lb-hud__live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pitch-green);
+  box-shadow: 0 0 6px var(--pitch-green);
+  animation: lb-hud-blink 2s ease infinite;
+}
+
+@keyframes lb-hud-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.lb-hud__live-text {
+  font-size: 0.68rem;
+}
+
+.lb-hud__btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.42rem 0.85rem;
+  background: var(--text-primary);
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.lb-hud__btn-action:hover {
+  background: #1E293B;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .lb-hud__btn-action,
+  .lb-hud__live-badge {
+    display: none;
+  }
+}
+
+/* Mobile Toggle */
+.lb-hud__mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+@media (max-width: 900px) {
+  .lb-hud__mobile-toggle {
+    display: flex;
+  }
+}
+
+/* Mobile Drawer */
+.lb-hud__mobile-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-elevated);
+  padding: 1.25rem 1.5rem 1.75rem;
+  animation: slideDown 0.2s var(--ease-editorial);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lb-hud__mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lb-hud__mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+
+.lb-hud__mobile-link--active {
+  background: var(--pitch-green-bg);
+  color: var(--pitch-green-deep);
+}
+
+.lb-hud__mobile-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 1rem;
+}
+
+.lb-hud__mobile-ext {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pitch-green);
+  text-decoration: underline;
+}

@@ -1,0 +1,189 @@
+/* ============================================================
+   SHARED STADIUM ATMOSPHERE (BERNABÉU DAYLIGHT)
+   Unified cinematic football stadium background for all pages
+   ============================================================ */
+
+.lb-stadium-atm {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #071324;
+}
+
+/* ------------------------------------------------------------
+   1. REAL DAYLIGHT STADIUM IMAGE LAYER
+   ------------------------------------------------------------ */
+.lb-stadium-atm__bg-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.lb-stadium-atm__picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-stadium-atm__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.03) saturate(1.05) brightness(1.01);
+  will-change: transform;
+  animation: lb-stadium-drift 32s ease-in-out infinite alternate;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes lb-stadium-drift {
+  0% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.025) translate3d(0, -6px, 0);
+  }
+}
+
+/* ------------------------------------------------------------
+   2. UNIVERSAL ATMOSPHERIC OVERLAYS
+   ------------------------------------------------------------ */
+.lb-stadium-atm__lighting {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Top HUD readability gradient */
+.lb-stadium-atm__hud-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.72) 0%,
+    rgba(7, 19, 36, 0.20) 65%,
+    transparent 100%
+  );
+}
+
+/* Volumetric Golden Sunlight Burst aligned with sun in image */
+.lb-stadium-atm__sunburst {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 45% at 82% 16%,
+    rgba(255, 246, 185, 0.24) 0%,
+    rgba(254, 236, 100, 0.10) 24%,
+    rgba(253, 224, 71, 0.03) 44%,
+    transparent 65%
+  );
+}
+
+/* Emerald pitch grass haze at bottom */
+.lb-stadium-atm__pitch-haze {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    rgba(6, 78, 59, 0.14) 0%,
+    transparent 70%
+  );
+}
+
+/* Edge vignette */
+.lb-stadium-atm__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 45%,
+    rgba(4, 7, 13, 0.48) 100%
+  );
+}
+
+/* ------------------------------------------------------------
+   3. ROUTE-SPECIFIC READABILITY SCRIMS
+   Transitions smoothly when navigating between pages
+   ------------------------------------------------------------ */
+.lb-stadium-atm__route-scrim {
+  position: absolute;
+  inset: 0;
+  transition: background 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+  pointer-events: none;
+}
+
+/* Timeline Route Scrim: Rich dark grade for maximum card contrast, no sky washout */
+.lb-stadium-atm--timeline .lb-stadium-atm__route-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.40) 0%,
+    rgba(7, 19, 36, 0.28) 20%,
+    rgba(7, 19, 36, 0.42) 55%,
+    rgba(7, 19, 36, 0.72) 100%
+  );
+}
+
+/* The Player Route Scrim */
+.lb-stadium-atm--the-player .lb-stadium-atm__route-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.30) 0%,
+    rgba(7, 19, 36, 0.16) 25%,
+    rgba(7, 19, 36, 0.32) 70%,
+    rgba(7, 19, 36, 0.60) 100%
+  );
+}
+
+/* Skills Route Scrim */
+.lb-stadium-atm--skills .lb-stadium-atm__route-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.25) 0%,
+    rgba(7, 19, 36, 0.18) 30%,
+    rgba(7, 19, 36, 0.28) 60%,
+    rgba(7, 19, 36, 0.52) 100%
+  );
+}
+
+/* Starting XI Route Scrim */
+.lb-stadium-atm--starting-xi .lb-stadium-atm__route-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.35) 0%,
+    rgba(7, 19, 36, 0.15) 25%,
+    rgba(7, 19, 36, 0.24) 60%,
+    rgba(7, 19, 36, 0.58) 100%
+  );
+}
+
+/* Connect Route Scrim */
+.lb-stadium-atm--connect .lb-stadium-atm__route-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.35) 0%,
+    rgba(7, 19, 36, 0.22) 25%,
+    rgba(7, 19, 36, 0.38) 60%,
+    rgba(7, 19, 36, 0.70) 100%
+  );
+}
+
+/* Home Hero Route Scrim */
+.lb-stadium-atm--home .lb-stadium-atm__route-scrim {
+  background: transparent;
+}
+
+/* ------------------------------------------------------------
+   4. REDUCED MOTION PREFERENCE
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .lb-stadium-atm__img {
+    animation: none;
+    transform: none;
+  }
+}

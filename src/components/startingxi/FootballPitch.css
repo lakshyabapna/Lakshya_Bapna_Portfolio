@@ -1,0 +1,205 @@
+/* ==========================================================
+   FOOTBALL PITCH — Phase 6.7: REALISTIC STADIUM TURF
+   ========================================================== */
+
+.xi-pitch-container {
+  position: relative;
+  width: 100%;
+  /* Deep professional grass green stadium pitch */
+  background: linear-gradient(180deg, #0B351B 0%, #0E4222 35%, #0C3C1F 70%, #082A15 100%);
+  border-radius: 12px;
+  border: 2px solid #061A0D;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(16,185,129,0.2),
+    0 25px 80px rgba(0,0,0,0.7),
+    0 0 80px rgba(4, 30, 15, 0.6) inset;
+}
+
+/* LAYER 1: Alternating lawn mower grass cut bands */
+.xi-pitch-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.042) 0px,
+    rgba(255, 255, 255, 0.042) 48px,
+    rgba(0, 0, 0, 0.055) 48px,
+    rgba(0, 0, 0, 0.055) 96px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* LAYER 2: Stadium floodlights + turf depth & vignette */
+.xi-pitch-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    /* Central pitch keylight */
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 75%),
+    /* 4 Corner floodlights */
+    radial-gradient(ellipse at 5% 0%, rgba(255,252,230,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 95% 0%, rgba(255,252,230,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 5% 100%, rgba(255,252,230,0.09) 0%, transparent 45%),
+    radial-gradient(ellipse at 95% 100%, rgba(255,252,230,0.09) 0%, transparent 45%),
+    /* Outer atmospheric depth vignette */
+    radial-gradient(ellipse 95% 90% at 50% 50%, transparent 60%, rgba(3, 15, 8, 0.55) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pitch markings SVG */
+.xi-pitch-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.xi-pitch-line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.65);
+  stroke-width: 0.75;
+  vector-effect: non-scaling-stroke;
+}
+
+.xi-pitch-spot {
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.xi-pitch-center-glow {
+  fill: url(#xiCenterGlow);
+}
+
+/* Tactical vector lines */
+.xi-vector-idle {
+  fill: none;
+  stroke: rgba(16,185,129,0.13);
+  stroke-width: 0.7;
+  stroke-dasharray: 3 5;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.3s ease, opacity 0.3s ease;
+}
+
+.xi-vector-active {
+  fill: none;
+  stroke: rgba(16,185,129,0.5);
+  stroke-width: 1;
+  stroke-dasharray: none;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 2px rgba(16,185,129,0.4));
+  transition: stroke 0.3s ease;
+}
+
+.xi-vector-faded {
+  opacity: 0.04;
+  transition: opacity 0.3s ease;
+}
+
+/* Zone labels */
+.xi-pitch-zone-label {
+  position: absolute;
+  right: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(148,163,184,0.22);
+  pointer-events: none;
+  z-index: 2;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.xi-pitch-zone-label--forward  { top: 19%; }
+.xi-pitch-zone-label--midfield { top: 42%; }
+.xi-pitch-zone-label--defence  { top: 63%; }
+.xi-pitch-zone-label--gk       { top: 80%; }
+
+/* Nodes layer */
+.xi-pitch-nodes {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+/* Telemetry bar */
+.xi-pitch-telemetry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: rgba(9,11,14,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  z-index: 20;
+}
+
+.xi-pitch-telemetry-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.08em;
+}
+
+.xi-telemetry-live {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+  animation: xi-tele-pulse 2s ease-in-out infinite;
+}
+
+@keyframes xi-tele-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.xi-pitch-telemetry-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: rgba(148,163,184,0.5);
+  letter-spacing: 0.06em;
+}
+
+/* Pitch footer instruction */
+.xi-pitch-footer {
+  padding: 7px 14px;
+  background: rgba(9,11,14,0.75);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: rgba(148,163,184,0.4);
+  letter-spacing: 0.08em;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+}
+
+/* Entrance animation classes */
+.xi-pitch-svg.is-drawing .xi-pitch-line {
+  stroke-dashoffset: 400;
+  stroke-dasharray: 400;
+  animation: xi-draw-line 1.0s ease-out forwards;
+}
+
+@keyframes xi-draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xi-telemetry-live { animation: none; }
+  .xi-pitch-svg.is-drawing .xi-pitch-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,581 @@
+/* ============================================================
+   THE PLAYER / ABOUT PAGE — DAYLIGHT STADIUM EXPERIENCE (PHASE 6.9B)
+   Floating frosted glass UI inside the authentic daylight Bernabéu stadium
+   ============================================================ */
+
+.lb-player-page-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #071324;
+  overflow-x: hidden;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------
+   1. FULL-PAGE DAYLIGHT STADIUM BACKGROUND
+   ------------------------------------------------------------ */
+.lb-player-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #071324;
+}
+
+.lb-player-bg-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-player-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.02) saturate(1.05) brightness(0.96);
+  transform: translate3d(0, 0, 0);
+}
+
+/* ------------------------------------------------------------
+   2. ATMOSPHERIC OVERLAYS
+   Preserves vibrant daylight sky, stands, sunlight & pitch grass
+   ------------------------------------------------------------ */
+.lb-player-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.lb-player-atmosphere__sky-readability {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.45) 0%,
+    rgba(7, 19, 36, 0.12) 16%,
+    transparent 35%
+  );
+}
+
+.lb-player-atmosphere__floodlights {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 85% 15%,
+    rgba(255, 246, 185, 0.12) 0%,
+    transparent 60%
+  );
+}
+
+.lb-player-atmosphere__pitch-haze {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 55% at 50% 100%,
+    rgba(6, 78, 59, 0.10) 0%,
+    transparent 70%
+  );
+}
+
+.lb-player-atmosphere__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 45%,
+    rgba(6, 14, 25, 0.50) 100%
+  );
+}
+
+/* ------------------------------------------------------------
+   3. MAIN CONTENT CONTAINER
+   ------------------------------------------------------------ */
+.lb-player-content-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 4.85rem 2.5rem 1.5rem 2.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .lb-player-content-wrapper {
+    padding: 4.75rem 1.25rem 2rem 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   4. EDITORIAL PAGE HEADER
+   ------------------------------------------------------------ */
+.lb-player-header {
+  margin-bottom: 1.15rem;
+}
+
+.lb-player-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lb-player-eyebrow-text {
+  color: #10B981;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+.lb-player-title {
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
+
+.lb-player-subtitle {
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  max-width: 820px;
+  margin: 0;
+  line-height: 1.45;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------------------
+   5. TWO-COLUMN LAYOUT (CARD + ABOUT BIO PANEL)
+   ------------------------------------------------------------ */
+.lb-player-layout-grid {
+  display: grid;
+  grid-template-columns: 255px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .lb-player-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.lb-player-card-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 255px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .lb-player-card-col {
+    max-width: 260px;
+  }
+}
+
+.lb-player-card-caption {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.65rem;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------------------
+   6. FROSTED GLASS ABOUT ME PANEL
+   ------------------------------------------------------------ */
+.lb-player-bio-col {
+  min-width: 0;
+}
+
+.lb-player-bio-panel {
+  background: rgba(11, 23, 37, 0.74);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 1.5rem 1.85rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .lb-player-bio-panel {
+    padding: 1.35rem 1.15rem;
+  }
+}
+
+.lb-player-bio-heading {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 0.85rem 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.lb-player-bio-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.88rem;
+  line-height: 1.58;
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------
+   7. PERSONAL INFO TILES GRID
+   ------------------------------------------------------------ */
+.lb-player-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-top: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 840px) {
+  .lb-player-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lb-player-info-tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(15, 29, 46, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.lb-player-info-tile:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.lb-info-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lb-info-icon-wrap--emerald {
+  background: rgba(16, 185, 129, 0.16);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.lb-info-icon-wrap--teal {
+  background: rgba(6, 182, 212, 0.16);
+  color: #06B6D4;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.lb-info-tile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.lb-info-tile-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lb-info-tile-val {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.3;
+}
+
+.lb-info-tile-sub {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.lb-info-status-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.2rem;
+}
+
+.lb-status-bullet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.lb-status-bullet--green {
+  color: #34D399;
+}
+
+.lb-status-bullet--gold {
+  color: #FBBF24;
+}
+
+.lb-bullet-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.lb-bullet-dot--green {
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+.lb-bullet-dot--gold {
+  background: #FBBF24;
+  box-shadow: 0 0 6px #FBBF24;
+}
+
+/* ------------------------------------------------------------
+   8. ACTION BUTTONS (CTAS)
+   ------------------------------------------------------------ */
+.lb-player-bio-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.lb-player-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #042517;
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+  transition: all 0.25s ease;
+}
+
+.lb-player-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+}
+
+.lb-player-btn-arrow {
+  transition: transform 0.2s ease;
+}
+
+.lb-player-btn-primary:hover .lb-player-btn-arrow {
+  transform: translateX(3px);
+}
+
+.lb-player-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.84rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.lb-player-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   9. CORE COMPETENCIES SECTION
+   ------------------------------------------------------------ */
+.lb-player-competencies-section {
+  margin-top: 1.5rem;
+}
+
+.lb-competencies-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.lb-competencies-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin: 0;
+  white-space: nowrap;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.lb-competencies-seam {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.7) 0%,
+    rgba(16, 185, 129, 0.2) 60%,
+    transparent 100%
+  );
+}
+
+.lb-competencies-tag {
+  color: #10B981;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .lb-competencies-tag {
+    display: none;
+  }
+}
+
+.lb-competencies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .lb-competencies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .lb-competencies-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lb-competency-card {
+  background: rgba(11, 23, 37, 0.68);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.95rem 1.15rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
+}
+
+.lb-competency-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3), 0 0 16px rgba(16, 185, 129, 0.12);
+}
+
+.lb-competency-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+.lb-competency-idx {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #10B981;
+}
+
+.lb-competency-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.lb-competency-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   10. ENTRANCE ANIMATIONS (CALM EDITORIAL TRANSITION)
+   Grouped reveal rhythm: Header at 0.26s, Primary at 0.46s-0.54s,
+   Secondary at 0.70s. Settles naturally by ~1.05s.
+   ------------------------------------------------------------ */
+.lb-anim-fade-up {
+  animation: lb-fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.26s;
+}
+
+.lb-anim-delay-1 {
+  animation-delay: 0.46s;
+}
+
+.lb-anim-delay-2 {
+  animation-delay: 0.54s;
+}
+
+.lb-anim-delay-3 {
+  animation-delay: 0.70s;
+}
+
+@keyframes lb-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lb-anim-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

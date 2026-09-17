@@ -1,0 +1,308 @@
+/* ============================================================
+   FC-INSPIRED PERSONAL PLAYER CARD — STADIUM EDITION (PHASE 6.9B)
+   Matches the reference image with dark translucent glass & emerald highlights
+   ============================================================ */
+
+.lb-personal-card-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
+  width: 100%;
+  max-width: 255px;
+  margin: 0 auto;
+}
+
+/* Ambient Aura */
+.lb-personal-card-aura {
+  position: absolute;
+  inset: -8px;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.lb-personal-card-aura.is-active {
+  opacity: 0.8;
+}
+
+.personal-aura-wisp {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  filter: blur(20px);
+}
+
+.personal-aura-wisp.wisp-emerald {
+  background: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+}
+
+.personal-aura-wisp.wisp-gold {
+  background: radial-gradient(circle at 70% 80%, rgba(217, 119, 6, 0.25) 0%, transparent 70%);
+}
+
+/* Card Body - Dark Translucent Stadium Glass */
+.lb-personal-card {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(165deg, rgba(13, 27, 42, 0.82) 0%, rgba(9, 18, 28, 0.90) 100%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 16px;
+  padding: 1rem 0.95rem;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 20px rgba(16, 185, 129, 0.12);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.lb-personal-card--hovered {
+  border-color: rgba(16, 185, 129, 0.65);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55), 0 0 32px rgba(16, 185, 129, 0.25);
+}
+
+/* Metallic Gold/Emerald Rim */
+.lb-personal-card__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid transparent;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.5) 0%, rgba(212, 175, 55, 0.35) 50%, rgba(16, 185, 129, 0.5) 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Holographic Glare */
+.lb-personal-card__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 65%);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: overlay;
+  z-index: 5;
+}
+
+/* Light Sweep */
+.lb-personal-card__sweep {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.25) 50%, transparent 60%);
+  transform: rotate(25deg) translateY(-100%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.lb-personal-card:hover .lb-personal-card__sweep {
+  transform: rotate(25deg) translateY(100%);
+}
+
+/* Header */
+.lb-personal-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.lb-card-kit {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lb-kit-num {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #10B981;
+  line-height: 1;
+}
+
+.lb-kit-pos {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(16, 185, 129, 0.16);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 0.14rem 0.4rem;
+  border-radius: 4px;
+}
+
+.lb-card-edition {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #FBBF24;
+  background: rgba(245, 158, 11, 0.14);
+  padding: 0.18rem 0.45rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.lb-card-spark-icon {
+  color: #FBBF24;
+}
+
+/* Portrait Box — tall enough to show full body in 3:4 portrait photo */
+.lb-personal-card__photo-box {
+  width: 100%;
+  height: 275px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(9, 14, 26, 0.95) 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.lb-personal-card__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Anchor to bottom so full body (feet) is always in frame; top background crops naturally */
+  object-position: center bottom;
+  image-rendering: -webkit-optimize-contrast;
+  display: block;
+}
+
+.lb-personal-card__photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-photo-frame {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-photo-monogram {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.04em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.lb-photo-status {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+}
+
+/* Identity */
+.lb-personal-card__identity {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.lb-personal-card__name {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.lb-personal-card__role {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #10B981;
+  margin-top: 0.2rem;
+  letter-spacing: 0.06em;
+}
+
+.lb-personal-card__sub {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 0.12rem;
+  letter-spacing: 0.04em;
+}
+
+/* Strengths (2x2 Grid) */
+.lb-personal-card__strengths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.lb-card-strength-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+}
+
+.lb-strength-icon {
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer */
+.lb-personal-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+}
+
+.lb-footer-badge {
+  font-weight: 700;
+  color: #FFFFFF !important;
+  letter-spacing: 0.06em;
+}
+
+.lb-footer-season {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0.05em;
+}
+

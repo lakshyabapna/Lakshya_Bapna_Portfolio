@@ -1,0 +1,424 @@
+/* ==========================================================
+   SCOUTING DOSSIER — DARK GLASS STADIUM PANEL (PHASE 6.11)
+   Matches the daylight stadium environment of Starting XI page.
+   Translucent dark glass surface over the visible stadium.
+   ========================================================== */
+
+.xi-dossier-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 395px;
+  background: rgba(7, 19, 36, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.40),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  position: relative;
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.xi-dossier-panel.has-project {
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.50),
+    0 0 0 1px rgba(16, 185, 129, 0.10) inset;
+}
+
+/* Top accent rule when project loaded */
+.xi-dossier-panel.has-project::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16,185,129,0.5), transparent);
+  border-radius: 14px 14px 0 0;
+}
+
+/* ── Idle State ── */
+.xi-dossier-panel--idle {
+  min-height: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-style: dashed;
+}
+
+.xi-dossier-idle-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.xi-dossier-idle-crest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.10);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  color: #10B981;
+  font-family: var(--font-display, sans-serif);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.15);
+}
+
+.xi-dossier-idle-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  margin: 0 0 0.55rem 0;
+}
+
+.xi-dossier-idle-sub {
+  font-size: 0.80rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 1.3rem 0;
+  max-width: 270px;
+}
+
+.xi-dossier-idle-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #10B981;
+  letter-spacing: 0.08em;
+}
+
+/* ── Top Control Bar ── */
+.xi-dossier-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.xi-dossier-kit-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.xi-dossier-kit-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.80rem;
+  font-weight: 800;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.xi-dossier-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.40);
+  letter-spacing: 0.05em;
+}
+
+.xi-dossier-status-pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  animation: xi-tele-pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes xi-tele-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.xi-dossier-close-btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+  transition: all 0.2s ease;
+}
+
+.xi-dossier-close-btn:hover {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.30);
+  color: #F87171;
+}
+
+/* ── Scrollable Panel Body ── */
+.xi-dossier-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+
+.xi-dossier-body::-webkit-scrollbar { width: 4px; }
+.xi-dossier-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+/* ── 1. Screenshot Media Frame ── */
+.xi-dossier-media {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xi-dossier-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: transform 0.3s ease;
+}
+
+.xi-dossier-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.xi-dossier-placeholder-kit {
+  font-family: var(--font-display, sans-serif);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: rgba(16, 185, 129, 0.35);
+}
+
+.xi-dossier-placeholder-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── 2. Identity Block ── */
+.xi-dossier-id-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.xi-dossier-name {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.xi-dossier-role-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.xi-dossier-category {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #10B981;
+  letter-spacing: 0.06em;
+}
+
+.xi-dossier-collab-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.60rem;
+  font-weight: 600;
+  color: rgba(212, 175, 55, 0.75);
+  background: rgba(212, 175, 55, 0.10);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+/* ── 3. Description ── */
+.xi-dossier-desc-block {
+  padding-bottom: 2px;
+}
+
+.xi-dossier-desc {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ── 4. Tech Stack ── */
+.xi-dossier-tech-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.xi-dossier-section-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: rgba(255, 255, 255, 0.28);
+  text-transform: uppercase;
+}
+
+.xi-dossier-tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.xi-tech-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* ── 5. Action Buttons ── */
+.xi-dossier-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.xi-cta-primary,
+.xi-cta-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 7px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.xi-cta-primary {
+  background: #10B981;
+  color: #071324;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.30);
+}
+
+.xi-cta-primary:hover {
+  background: #34D399;
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.40);
+  transform: translateY(-1px);
+}
+
+.xi-cta-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.xi-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* ── 6. Collab Note ── */
+.xi-dossier-collab-note {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.42);
+  background: rgba(16, 185, 129, 0.06);
+  border-left: 2px solid rgba(16, 185, 129, 0.40);
+  padding: 6px 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+.xi-dossier-collab-label {
+  font-weight: 700;
+  color: #10B981;
+  font-family: var(--font-mono, monospace);
+}
+
+/* ── Mobile Bottom Sheet ── */
+.xi-dossier-mobile-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 19, 36, 0.70);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+.xi-dossier-mobile-sheet .xi-dossier-panel {
+  max-width: 100%;
+  border-radius: 16px 16px 0 0;
+  max-height: 88vh;
+  border-bottom: none;
+}

@@ -1,0 +1,90 @@
+/* Football Entrance & Trajectory System */
+.lb-football-trajectory-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.lb-trajectory-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+}
+
+.lb-football-flight-node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+}
+
+.lb-football-interactive-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-football-ball-icon {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.28));
+  transition: transform 0.3s ease;
+}
+
+.lb-football-shadow {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 75%);
+  z-index: 1;
+}
+
+/* Settled static state for reduced-motion */
+.lb-football-settled--static {
+  position: absolute;
+  top: 28%;
+  right: 12%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile responsive flight constraints */
+@media (max-width: 768px) {
+  .lb-football-trajectory-container {
+    opacity: 0.6;
+  }
+
+  .lb-trajectory-svg {
+    display: none; /* Keep mobile clean and free of extraneous lines */
+  }
+
+  .lb-football-flight-node {
+    display: none; /* Omit trajectory on mobile to keep focus purely on editorial text and CTAs */
+  }
+
+  .lb-football-settled--static {
+    display: none;
+  }
+}

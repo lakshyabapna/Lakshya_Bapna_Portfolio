@@ -1,0 +1,381 @@
+/* ==========================================================
+   PLAYER CARD — Premium Collectible Project Node
+   Phase 5: MY STARTING XI
+   ========================================================== */
+
+/* ── Wrapper (positioned absolutely on the pitch) ── */
+.xi-player-wrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: z-index 0.1s ease;
+}
+
+.xi-player-wrap.is-hovered,
+.xi-player-wrap:hover,
+.xi-player-wrap:focus-within {
+  z-index: 60 !important;
+}
+
+/* ── Native button reset + sizing + POP-UP HOVER ── */
+.xi-player-btn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 128px;
+  position: relative;
+  border-radius: 10px;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.xi-player-btn:focus-visible .xi-card {
+  outline: 2px solid #10B981;
+  outline-offset: 3px;
+}
+
+/* Resting state for selected button when not hovered */
+.xi-player-btn.is-selected {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* 
+   HOVER POP-UP & MAXIMIZE — ALWAYS WINS CASCADE:
+   Works for all cards (unselected, selected, or dimmed)
+*/
+.xi-player-btn:hover,
+.xi-player-btn.is-hovered,
+.xi-player-btn:focus-visible,
+.xi-player-btn.is-selected:hover,
+.xi-player-btn.is-selected.is-hovered,
+.xi-player-btn.is-dimmed:hover,
+.xi-player-btn.is-dimmed.is-hovered {
+  transform: translateY(-12px) scale(1.15) !important;
+}
+
+/* ── Card Surface ── */
+.xi-card {
+  position: relative;
+  width: 128px;
+  background: linear-gradient(160deg, #131A22 0%, #0E1318 60%, #111820 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 0 0 1px rgba(16, 185, 129, 0.06) inset;
+  padding: 9px 10px 8px;
+  overflow: hidden;
+  transition: box-shadow 0.24s ease-out, border-color 0.2s ease, opacity 0.2s ease;
+  animation: xi-float var(--xi-float-duration, 5s) var(--xi-float-delay, 0s) ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+/* Metallic rim gradient overlay */
+.xi-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.12) 0%,
+    transparent 40%,
+    rgba(16, 185, 129, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+/* Top sheen — premium card surface gloss */
+.xi-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+@keyframes xi-float {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(-5px); }
+}
+
+/* Holographic light sweep */
+.xi-card__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* ── Kit Number ── */
+.xi-card__kit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #D4AF37;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Project Name (PRIMARY) ── */
+.xi-card__name {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #F8FAFC;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+/* ── Category (SECONDARY) ── */
+.xi-card__category {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #64748B;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Status row ── */
+.xi-card__status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+/* Live pulse dot */
+.xi-card__live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+  animation: xi-pulse 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Collab badge */
+.xi-card__collab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(212, 175, 55, 0.8);
+  letter-spacing: 0.05em;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+/* Tactical label below card */
+.xi-card__tactical {
+  display: block;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(148, 163, 184, 0.5);
+  letter-spacing: 0.1em;
+  margin-top: 5px;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* ── Hover aura ── */
+.xi-player-aura {
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.0) 0%, transparent 70%);
+  pointer-events: none;
+  transition: background 0.3s ease, transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+/* =========================================================
+   STATES
+   ========================================================= */
+
+/* Hover surface & lighting enhancements */
+.xi-player-btn:hover .xi-card,
+.xi-player-btn.is-hovered .xi-card,
+.xi-player-btn:focus-visible .xi-card {
+  animation-play-state: paused;
+  border-color: rgba(16, 185, 129, 0.7);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.82),
+    0 0 0 1.5px rgba(16, 185, 129, 0.5),
+    0 0 24px rgba(16, 185, 129, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset !important;
+}
+
+.xi-player-btn:hover .xi-card__glare,
+.xi-player-btn.is-hovered .xi-card__glare,
+.xi-player-btn:focus-visible .xi-card__glare {
+  opacity: 1;
+}
+
+.xi-player-btn:hover .xi-player-aura,
+.xi-player-btn.is-hovered .xi-player-aura,
+.xi-player-btn:focus-visible .xi-player-aura {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, transparent 70%);
+  transform: scale(1.15);
+}
+
+.xi-player-btn:hover .xi-card__tactical,
+.xi-player-btn.is-hovered .xi-card__tactical,
+.xi-player-btn:focus-visible .xi-card__tactical {
+  color: #10B981;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+/* Selected */
+.xi-player-btn.is-selected .xi-card {
+  box-shadow:
+    0 0 0 2px #10B981,
+    0 0 20px rgba(16, 185, 129, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.6);
+  border-color: rgba(16, 185, 129, 0.7);
+}
+
+.xi-player-btn.is-selected .xi-player-aura {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 65%);
+}
+
+.xi-player-btn.is-selected .xi-card__tactical {
+  color: #10B981;
+}
+
+/* Dimmed (when another is selected/hovered) */
+.xi-player-btn.is-dimmed .xi-card {
+  opacity: 0.38;
+  box-shadow: none;
+}
+
+.xi-player-btn.is-dimmed:hover .xi-card,
+.xi-player-btn.is-dimmed.is-hovered .xi-card {
+  opacity: 1;
+}
+
+/* Entrance animation states — physical slide and settling movement */
+.xi-player-wrap.is-entering {
+  opacity: 0;
+  transform: translate(-50%, -40%) scale(0.92);
+}
+
+.xi-player-wrap.has-entered {
+  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1), transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Phase 6 broadcast lineup illumination pulse across all 11 cards */
+.xi-player-wrap.is-illuminating .xi-card {
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.65), 0 0 0 1px #10B981, 0 12px 32px rgba(0,0,0,0.8) !important;
+  border-color: #10B981 !important;
+  transition: all 0.35s ease-out;
+}
+
+.xi-player-wrap.has-entered .xi-card {
+  animation: xi-float var(--xi-float-duration, 5s) var(--xi-float-delay, 0s) ease-in-out infinite alternate;
+}
+
+/* =========================================================
+   RESTRAINED FOOTBALL BROADCAST ENERGY ACCENTS
+   ========================================================= */
+
+/* Warm White Energy (Subtle attack line) */
+.xi-card--energy-warm {
+  border-color: rgba(255, 248, 220, 0.28);
+}
+.xi-card--energy-warm:hover {
+  border-color: rgba(255, 248, 220, 0.7);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 248, 220, 0.25);
+}
+.energy-warm .xi-player-aura {
+  background: radial-gradient(circle, rgba(255, 248, 220, 0.12) 0%, transparent 70%);
+}
+
+/* Emerald Tactical Energy (Core creators) */
+.xi-card--energy-emerald {
+  border-color: rgba(16, 185, 129, 0.35);
+}
+.xi-card--energy-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.85);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.35);
+}
+.energy-emerald .xi-player-aura {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, transparent 70%);
+}
+
+/* Ice / Frost Energy (Defenders) */
+.xi-card--energy-frost {
+  border-color: rgba(56, 189, 248, 0.35);
+}
+.xi-card--energy-frost:hover {
+  border-color: rgba(56, 189, 248, 0.8);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.3);
+}
+.energy-frost .xi-player-aura {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, transparent 70%);
+}
+
+/* Gold Energy (Goalkeeper) */
+.xi-card--energy-gold {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+.xi-card--energy-gold:hover {
+  border-color: rgba(212, 175, 55, 0.85);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 22px rgba(212, 175, 55, 0.35);
+}
+.energy-gold .xi-player-aura {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, transparent 70%);
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .xi-card {
+    animation: none !important;
+  }
+  .xi-card__live-dot {
+    animation: none !important;
+  }
+  .xi-player-btn:hover .xi-card,
+  .xi-player-btn:focus-visible .xi-card,
+  .xi-player-btn.is-selected .xi-card {
+    transform: none;
+  }
+  .xi-player-wrap.is-entering,
+  .xi-player-wrap.has-entered {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition: none;
+  }
+}

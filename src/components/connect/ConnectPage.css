@@ -1,0 +1,751 @@
+/* ============================================================
+   CONNECT PAGE — DAYLIGHT STADIUM EXPERIENCE (PHASE 6.13)
+   Cinematic closing chapter inside the authentic daylight stadium
+   ============================================================ */
+
+/* ── Root Container ── */
+.lb-connect-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #071324;
+  overflow-x: hidden;
+  padding-bottom: 5rem;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   1. FULL-PAGE DAYLIGHT STADIUM BACKGROUND
+   ============================================================ */
+.lb-connect-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #071324;
+}
+
+.lb-connect-bg-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-connect-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.02) saturate(1.08) brightness(0.92);
+  transform: translate3d(0, 0, 0);
+}
+
+/* ============================================================
+   2. ATMOSPHERIC OVERLAYS
+   ============================================================ */
+.lb-connect-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Top readability gradient for navbar HUD */
+.lb-connect-atm__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.70) 0%,
+    rgba(7, 19, 36, 0.22) 65%,
+    transparent 100%
+  );
+}
+
+/* Subtle content readability scrim */
+.lb-connect-atm__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(7, 19, 36, 0.16) 18%,
+    rgba(7, 19, 36, 0.28) 55%,
+    rgba(7, 19, 36, 0.45) 100%
+  );
+}
+
+/* Bottom pitch ground haze */
+.lb-connect-atm__bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 260px;
+  background: linear-gradient(
+    0deg,
+    rgba(7, 19, 36, 0.75) 0%,
+    transparent 100%
+  );
+}
+
+/* ============================================================
+   3. AMBIENT EDITORIAL PHRASES
+   ============================================================ */
+.lb-connect-ambient-phrases {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lb-ambient-phrase {
+  position: absolute;
+  font-family: 'Caveat', cursive, sans-serif;
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.lb-ambient-phrase--tr {
+  top: 140px;
+  right: 50px;
+  text-align: right;
+  transform: rotate(3deg);
+}
+
+.lb-ambient-phrase--bl {
+  bottom: 85px;
+  left: 45px;
+  text-align: left;
+  transform: rotate(-5deg);
+}
+
+.lb-ambient-phrase--br {
+  bottom: 80px;
+  right: 50px;
+  text-align: right;
+  transform: rotate(3deg);
+}
+
+@media (max-width: 1140px) {
+  .lb-ambient-phrase {
+    display: none;
+  }
+}
+
+/* ============================================================
+   4. CONTENT WRAPPER
+   ============================================================ */
+.lb-connect-content-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 5.5rem 1.75rem 3rem 1.75rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ============================================================
+   5. EDITORIAL HEADER
+   ============================================================ */
+.lb-connect-header {
+  text-align: left;
+  margin-bottom: 2.25rem;
+}
+
+.lb-connect-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10B981;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.85rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 0.65rem;
+}
+
+.lb-connect-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.9);
+  flex-shrink: 0;
+}
+
+.lb-connect-title {
+  font-size: clamp(2.35rem, 4vw, 3.25rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.45rem 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.lb-connect-subtitle {
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  color: rgba(226, 232, 240, 0.85);
+  max-width: 720px;
+  margin: 0;
+  line-height: 1.5;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   6. TRANSLUCENT STADIUM CONTACT PANEL
+   ============================================================ */
+.lb-connect-main-card {
+  background: rgba(11, 23, 37, 0.74);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 24px;
+  padding: 2.25rem 2.5rem;
+  box-sizing: border-box;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(16, 185, 129, 0.12);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Top Edge Glow */
+.lb-connect-card-glow {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  right: 32px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.7), transparent);
+}
+
+/* Two-Column Grid: Photo (Left) + Details (Right) */
+.lb-connect-card-grid {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+/* ============================================================
+   7. LEFT COLUMN: PROFILE PHOTO
+   ============================================================ */
+.lb-connect-photo-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-connect-photo-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(16, 185, 129, 0.2);
+  background: #071324;
+}
+
+.lb-connect-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.lb-connect-photo-inner-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 22px rgba(16, 185, 129, 0.15);
+  pointer-events: none;
+}
+
+/* ============================================================
+   8. RIGHT COLUMN: DETAILS & CHANNELS
+   ============================================================ */
+.lb-connect-details-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.35rem;
+  min-width: 0;
+}
+
+/* Profile Header Inside Card */
+.lb-connect-identity-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.lb-connect-identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lb-connect-crest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(7, 19, 36, 0.95) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+  flex-shrink: 0;
+}
+
+.lb-connect-crest-svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+  color: #FFFFFF;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+.lb-connect-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-connect-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.lb-connect-role {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #10B981;
+  letter-spacing: 0.1em;
+  margin-top: 0.22rem;
+}
+
+/* Status Pill */
+.lb-connect-status-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.lb-connect-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+}
+
+.lb-connect-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: lb-status-blink 2s ease infinite;
+}
+
+@keyframes lb-status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.lb-connect-status-sub {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(148, 163, 184, 0.7);
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+/* Personal Statement (Quote Style with Emerald Accent) */
+.lb-connect-statement {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  border-left: 2.5px solid #10B981;
+  padding: 0.4rem 0 0.4rem 1.15rem;
+  margin: 0;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Action Channels (2x2 Grid Desktop, 1 Col Mobile) */
+.lb-connect-channels {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.lb-channel-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.05rem 1.25rem;
+  background: rgba(13, 27, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  min-height: 72px;
+  box-sizing: border-box;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.lb-channel-card:hover {
+  background: rgba(16, 34, 52, 0.85);
+  border-color: rgba(16, 185, 129, 0.55);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.lb-channel-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E2E8F0;
+  flex-shrink: 0;
+  transition: all 0.22s ease;
+}
+
+.lb-channel-card--linkedin:hover .lb-channel-icon {
+  background: rgba(10, 102, 194, 0.25);
+  border-color: #0A66C2;
+  color: #38BDF8;
+}
+
+.lb-channel-card--github:hover .lb-channel-icon {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.lb-channel-card--email:hover .lb-channel-icon {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10B981;
+  color: #34D399;
+}
+
+.lb-channel-card--resume:hover .lb-channel-icon {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #F59E0B;
+  color: #FBBF24;
+}
+
+.lb-channel-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.lb-channel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.lb-channel-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.lb-channel-detail {
+  font-size: 0.74rem;
+  color: rgba(148, 163, 184, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.15rem;
+}
+
+.lb-channel-arrow {
+  color: rgba(16, 185, 129, 0.8);
+  transition: transform 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.lb-channel-card:hover .lb-channel-arrow {
+  color: #10B981;
+  transform: translate(2px, -2px);
+}
+
+/* ============================================================
+   9. FOOTER TELEMETRY INSIDE CARD
+   ============================================================ */
+.lb-connect-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.65);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.lb-footer-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lb-footer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+  flex-shrink: 0;
+}
+
+.lb-footer-copy {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================================
+   10. TOAST NOTIFICATION
+   ============================================================ */
+.lb-connect-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #FFFFFF;
+  padding: 0.85rem 1.35rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: lb-toast-in 0.25s ease;
+}
+
+.lb-toast-icon {
+  color: #34D399;
+  flex-shrink: 0;
+}
+
+@keyframes lb-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   11. ENTRANCE ANIMATIONS (CALM EDITORIAL TRANSITION)
+   Grouped reveal rhythm: Header at 0.25s, Main card at 0.45s,
+   Photo and Details at 0.60s.
+   ============================================================ */
+.lb-connect-anim-fade-up {
+  animation: lb-connect-fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+}
+
+.lb-connect-anim-delay-1 {
+  animation-delay: 0.45s;
+}
+
+.lb-connect-anim-delay-2 {
+  animation-delay: 0.60s;
+}
+
+@keyframes lb-connect-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   12. RESPONSIVE DESIGN (TABLET & MOBILE)
+   ============================================================ */
+@media (max-width: 960px) {
+  .lb-connect-content-wrap {
+    padding: 5rem 1.25rem 2.5rem 1.25rem;
+  }
+
+  .lb-connect-main-card {
+    padding: 2rem 1.75rem;
+    border-radius: 20px;
+  }
+
+  .lb-connect-card-grid {
+    grid-template-columns: 1fr;
+    gap: 1.85rem;
+  }
+
+  .lb-connect-photo-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .lb-connect-photo-frame {
+    max-width: 280px;
+    height: 360px;
+    min-height: unset;
+  }
+
+  .lb-connect-status-wrap {
+    align-items: flex-start;
+  }
+
+  .lb-connect-status-sub {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .lb-connect-content-wrap {
+    padding: 4.85rem 1rem 2.5rem 1rem;
+  }
+
+  .lb-connect-header {
+    margin-bottom: 1.85rem;
+  }
+
+  .lb-connect-main-card {
+    padding: 1.5rem 1.15rem;
+    gap: 1.25rem;
+    border-radius: 18px;
+  }
+
+  .lb-connect-channels {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .lb-connect-identity-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .lb-connect-name {
+    font-size: 1.4rem;
+  }
+
+  .lb-connect-crest {
+    width: 44px;
+    height: 44px;
+    font-size: 1.05rem;
+  }
+
+  .lb-connect-statement {
+    font-size: 0.95rem;
+    padding-left: 0.85rem;
+  }
+
+  .lb-channel-card {
+    padding: 0.95rem 1.1rem;
+    min-height: 68px;
+  }
+
+  .lb-channel-name {
+    font-size: 0.95rem;
+  }
+
+  .lb-channel-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lb-connect-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
+
+/* ============================================================
+   13. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .lb-connect-anim-fade-up,
+  .lb-connect-toast {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .lb-channel-card,
+  .lb-channel-arrow {
+    transition: none !important;
+  }
+
+  .lb-connect-status-dot {
+    animation: none !important;
+  }
+}
+

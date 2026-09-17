@@ -1,0 +1,166 @@
+/* ==========================================================
+   MOBILE FORMATION LIST
+   Phase 5: MY STARTING XI
+   ========================================================== */
+
+.xi-mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.xi-mobile-zone-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.xi-mobile-zone-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 2px solid rgba(16, 185, 129, 0.55);
+  border-radius: 0 4px 4px 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.xi-mobile-zone-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #10B981;
+  text-transform: uppercase;
+}
+
+.xi-mobile-zone-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(148, 163, 184, 0.55);
+}
+
+.xi-mobile-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xi-mobile-card-btn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  min-height: 48px;
+  background: linear-gradient(160deg, #131A22 0%, #0E1318 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.xi-mobile-card-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(16, 185, 129, 0.2);
+}
+
+.xi-mobile-card-btn:active {
+  transform: scale(0.98);
+  border-color: #10B981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.xi-mobile-card-btn.is-selected {
+  border-color: #10B981;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+.xi-mobile-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.xi-mobile-card-kit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #D4AF37;
+  flex-shrink: 0;
+  min-width: 28px;
+}
+
+.xi-mobile-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.xi-mobile-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #F8FAFC;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xi-mobile-card-cat {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9.5px;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.xi-mobile-card-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.xi-mobile-card-tac {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.xi-mobile-card-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+.xi-mobile-card-collab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.xi-mobile-card-arrow {
+  font-size: 12px;
+  color: #64748B;
+  margin-left: 4px;
+}

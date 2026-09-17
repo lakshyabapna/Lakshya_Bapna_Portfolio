@@ -1,0 +1,645 @@
+/* ===================================================
+   HERO SECTION — KICK-OFF / THE DAYLIGHT STADIUM EXPERIENCE
+   Phase 6.9B: Reference-Driven Daylight Golden-Hour Atmosphere
+   =================================================== */
+
+.lb-hero-root {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 3.5rem 5rem 3.5rem;
+  background: #071324; /* Daylight stadium depth base */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------
+   LAYER 1: DAYLIGHT STADIUM BACKGROUND & SKY UNDERLAYER
+   --------------------------------------------------- */
+.lb-hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  /* Bright daylight sky base — shows through when video/image doesn't cover top */
+  background:
+    linear-gradient(180deg,
+      #93C5FD 0%,
+      #60A5FA 15%,
+      #3B82F6 30%,
+      #1D4ED8 50%,
+      #0F2044 80%,
+      #071324 100%
+    );
+}
+
+.lb-hero-bg-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  /* Razor-sharp pixel clarity and vibrant broadcast grade */
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.03) saturate(1.05) brightness(1.01);
+  will-change: transform;
+  animation: lb-stadium-drift 32s ease-in-out infinite alternate;
+}
+
+/* Progressive Stadium Entry Veil (0.0s -> 1.5s) */
+.lb-hero-entry-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 14, 28, 0.40) 0%,
+    rgba(6, 14, 28, 0.72) 40%,
+    rgba(6, 14, 28, 0.94) 100%
+  );
+}
+
+@keyframes lb-stadium-drift {
+  0% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.025) translate3d(0, -6px, 0);
+  }
+}
+
+/* ---------------------------------------------------
+   LAYER 2: CINEMATIC DAYLIGHT & GOLDEN-HOUR ATMOSPHERE
+   --------------------------------------------------- */
+.lb-hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Editorial vignette on the left for maximum text contrast while keeping stadium bright */
+.lb-hero-atmosphere__dark-grade {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Left editorial text backing — keeps typography crisp and readable */
+    linear-gradient(92deg,
+      rgba(4, 7, 13, 0.80) 0%,
+      rgba(4, 7, 13, 0.58) 18%,
+      rgba(4, 7, 13, 0.22) 34%,
+      transparent 45%
+    ),
+    /* Soft bottom transition into following section */
+    linear-gradient(0deg,
+      rgba(5, 8, 14, 0.72) 0%,
+      rgba(5, 8, 14, 0.20) 7%,
+      transparent 18%
+    );
+}
+
+/* Volumetric Golden Sunlight Burst — Aligned to Image Sun Position (82% 16%) */
+.lb-hero-atmosphere__floodlights {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 65% 45% at 82% 16%,
+      rgba(255, 246, 185, 0.35) 0%,
+      rgba(254, 236, 100, 0.16) 24%,
+      rgba(253, 224, 71, 0.05) 44%,
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 38%,
+      rgba(255, 250, 210, 0.10) 50%,
+      rgba(255, 255, 255, 0.06) 55%,
+      transparent 68%
+    );
+}
+
+/* Subtle Emerald Turf Accent Glow */
+.lb-hero-atmosphere__pitch-haze {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 42%;
+  background: radial-gradient(
+    ellipse 85% 50% at 50% 95%,
+    rgba(34, 197, 94, 0.12) 0%,
+    rgba(16, 185, 129, 0.04) 40%,
+    transparent 75%
+  );
+  filter: blur(16px);
+}
+
+/* Subtle Perimeter Vignette */
+.lb-hero-atmosphere__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 110% 90% at 65% 38%,
+    transparent 65%,
+    rgba(4, 7, 14, 0.16) 100%
+  );
+}
+
+/* ---------------------------------------------------
+   LAYER 3: PITCH GEOMETRY & MINIMAL SEAM
+   --------------------------------------------------- */
+.lb-hero-pitch-geometry {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.lb-pitch-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ---------------------------------------------------
+   LAYER 4: EDITORIAL EDITORIAL CONTENT
+   --------------------------------------------------- */
+.lb-hero-content-wrapper {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-top: 3.5rem;
+}
+
+.lb-hero-editorial-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.lb-hero-primary-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1.35rem;
+  max-width: 680px;
+}
+
+/* Eyebrow: BUILD • LEARN • PLAY • CREATE */
+.lb-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lb-hero-eyebrow-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: #CBD5E1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+}
+
+/* Editorial Title & Identity Mark */
+.lb-hero-editorial-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.lb-hero-name {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(3.8rem, 8.2vw, 6.8rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.lb-hero-name-row {
+  display: block;
+  color: #FFFFFF;
+  text-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.85),
+    0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Role Lockup with Accent Line */
+.lb-hero-role-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-top: 0.15rem;
+}
+
+.lb-hero-role-text {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #E2E8F0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+}
+
+.lb-hero-role-line {
+  width: 44px;
+  height: 3px;
+  background-color: #10B981;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.65);
+}
+
+/* Tagline */
+.lb-hero-statement {
+  margin: 0;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #E2E8F0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+  max-width: 500px;
+}
+
+/* CTAs (Reference Match: Emerald Pill + Frosted Glass Pill) */
+.lb-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.lb-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0.72rem 1.45rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  outline: none;
+}
+
+.lb-hero-btn-icon {
+  flex-shrink: 0;
+}
+
+/* Primary CTA: Vibrant Emerald Pill */
+.lb-hero-btn--primary {
+  background: #10B981;
+  color: #022C22;
+  border: 1px solid #10B981;
+  box-shadow:
+    0 4px 16px rgba(16, 185, 129, 0.4),
+    0 0 20px rgba(16, 185, 129, 0.25);
+}
+
+.lb-hero-btn--primary:hover {
+  background: #34D399;
+  border-color: #34D399;
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(16, 185, 129, 0.5),
+    0 0 30px rgba(16, 185, 129, 0.35);
+}
+
+.lb-hero-btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary CTA: Frosted Glass Pill */
+.lb-hero-btn--secondary {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.lb-hero-btn--secondary:hover {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.lb-hero-btn--secondary:active {
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------
+   LAYER 5: BOTTOM TELEMETRY BARS (Reference Match)
+   --------------------------------------------------- */
+.lb-hero-bottom-telemetry {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 3.5rem;
+  right: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* Left: Open to Opportunities (with left vertical border like reference) */
+.lb-hero-telemetry-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28rem;
+  border-left: 2px solid rgba(16, 185, 129, 0.75);
+  padding: 0.4rem 0.9rem;
+  background: rgba(6, 11, 20, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0 8px 8px 0;
+}
+
+.lb-telemetry-opp-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.lb-telemetry-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 10px #10B981;
+  animation: lb-pulse-green 2.2s ease-in-out infinite;
+}
+
+@keyframes lb-pulse-green {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+.lb-telemetry-opp-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+.lb-telemetry-school {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #CBD5E1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+/* Right: Football Inspires Better Builders */
+.lb-hero-telemetry-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(6, 11, 20, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+}
+
+.lb-telemetry-tagline-top {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #CBD5E1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+.lb-telemetry-tagline-main {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+/* Broadcast Feedback Toast */
+.lb-hero-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid #10B981;
+  color: #FFFFFF;
+  padding: 0.75rem 1.4rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.25);
+  z-index: 1000;
+  animation: lb-toast-fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-toast-check {
+  color: #10B981;
+  flex-shrink: 0;
+}
+
+@keyframes lb-toast-fade-in {
+  from { opacity: 0; transform: translate(-50%, 15px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Bottom Seam */
+.lb-hero-bottom-seam {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(16, 185, 129, 0.25) 50%,
+    rgba(255, 255, 255, 0.08) 75%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  z-index: 4;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE DESIGN CONSTRAINTS
+   --------------------------------------------------- */
+
+/* Tablet (1024px and down) */
+@media (max-width: 1024px) {
+  .lb-hero-root {
+    padding: 0 2.5rem 5rem 2.5rem;
+  }
+
+  .lb-hero-bottom-telemetry {
+    left: 2.5rem;
+    right: 2.5rem;
+    bottom: 1.8rem;
+  }
+}
+
+/* Tablet Small (768px) */
+@media (max-width: 768px) {
+  .lb-hero-root {
+    min-height: 92vh;
+    padding: 5.5rem 1.75rem 4.5rem 1.75rem;
+    justify-content: flex-start;
+  }
+
+  .lb-hero-content-wrapper {
+    padding-top: 1.5rem;
+  }
+
+  .lb-hero-name {
+    font-size: clamp(2.8rem, 9.5vw, 4.5rem);
+  }
+
+  .lb-hero-cta-group {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .lb-hero-bottom-telemetry {
+    left: 1.75rem;
+    right: 1.75rem;
+    bottom: 1.5rem;
+  }
+}
+
+/* Mobile (390px × 844px) */
+@media (max-width: 480px) {
+  .lb-hero-root {
+    min-height: 88vh;
+    padding: 5rem 1.25rem 4rem 1.25rem;
+  }
+
+  .lb-hero-content-wrapper {
+    padding-top: 1rem;
+  }
+
+  .lb-hero-eyebrow-text {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+  }
+
+  .lb-hero-name {
+    font-size: 2.75rem;
+    line-height: 0.94;
+    letter-spacing: -0.03em;
+  }
+
+  .lb-hero-role-text {
+    font-size: 1.125rem;
+  }
+
+  .lb-hero-statement {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .lb-hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .lb-hero-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1.25rem;
+  }
+
+  .lb-hero-bottom-telemetry {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    width: 100%;
+  }
+
+  .lb-hero-telemetry-left,
+  .lb-hero-telemetry-right {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .lb-hero-telemetry-right {
+    align-items: flex-start;
+    border-left: 2px solid rgba(255, 255, 255, 0.28);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .lb-hero-toast {
+    width: 90%;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .lb-hero-video {
+    display: none;
+    animation: none;
+  }
+
+  .lb-hero-poster-fallback {
+    display: block !important;
+    animation: none;
+  }
+
+  .lb-telemetry-live-dot {
+    animation: none;
+  }
+}

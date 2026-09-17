@@ -1,0 +1,88 @@
+/* ============================================================
+   APP & MULTI-PAGE LAYOUT STYLES (PHASE 6)
+   ============================================================ */
+
+.lb-app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+}
+
+/* On stadium routes (home, the-player, skills, starting-xi), match app root background to the stadium ground */
+.lb-app-root:has(.lb-main-view--hero),
+.lb-app-root:has(.lb-player-page-root),
+.lb-app-root:has(.lb-skills-root),
+.lb-app-root:has(.lb-xi-root),
+.lb-app-root:has(.lb-timeline-root),
+.lb-app-root:has(.lb-connect-root) {
+  background-color: #071324;
+}
+
+.lb-main-view {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  padding-top: 0; /* Fixed nav is overlaid */
+}
+
+/* On hero route the main view starts at top-0 so the fixed HUD floats over the video */
+.lb-main-view--hero {
+  padding-top: 0;
+}
+
+/* Global Footer Telemetry */
+.lb-global-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  padding: 1.5rem 1.5rem;
+}
+
+.lb-footer-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .lb-footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.lb-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lb-footer-badge {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.lb-footer-sep {
+  opacity: 0.35;
+}
+
+.lb-footer-stage {
+  color: var(--pitch-green);
+  font-weight: 600;
+}
+
+.lb-footer-right {
+  font-size: 0.72rem;
+  color: var(--text-light);
+}

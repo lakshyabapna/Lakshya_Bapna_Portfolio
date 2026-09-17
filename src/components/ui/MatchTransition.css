@@ -1,0 +1,338 @@
+/* ============================================================
+   STADIUM ENTRY EXPERIENCE — PHASE 6.10 (SMOOTHNESS PASS)
+   Condensed 4.8s cinematic opener.
+   1. Approach (0.0–1.2s): exterior aerial, golden-hour push
+   2. Tunnel  (1.2–3.0s): tunnel walkout perspective
+   3. Reveal  (3.0–4.0s): full stadium bowl + editorial title card
+   4. Dissolve(4.0–4.8s): 0.8s crossfade into Home hero (already underneath)
+   ============================================================ */
+
+.lb-stadium-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  background-color: #071324;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transform: scale(1);
+  /* 0.8s dissolve — long enough to crossfade smoothly while hero reveals */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: all;
+  user-select: none;
+  will-change: opacity;
+}
+
+/* Seamless Continuous Dissolve into Home Hero (Exact 1.0 scale match = zero jump) */
+.lb-stadium-intro--dissolve {
+  opacity: 0;
+  transform: scale(1.0);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   1. MULTI-LAYER PHOTOGRAPHIC STADIUM ENVIRONMENT
+   ------------------------------------------------------------ */
+.lb-stadium-intro__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  background-color: #071324;
+}
+
+.lb-stadium-intro__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease;
+  will-change: opacity, transform;
+}
+
+.lb-stadium-intro__pic {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-stadium-intro__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.03) saturate(1.05) brightness(1.01);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Phase 1: Approach Layer — starts visible, gentle push */
+.lb-stadium-intro__layer--approach {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1.0);
+}
+
+.lb-stadium-intro--approach .lb-stadium-intro__layer--approach {
+  opacity: 1;
+  transform: scale(1.03);
+  transition: transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-stadium-intro--tunnel .lb-stadium-intro__layer--approach,
+.lb-stadium-intro--reveal .lb-stadium-intro__layer--approach,
+.lb-stadium-intro--dissolve .lb-stadium-intro__layer--approach {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Phase 2: Tunnel Walkout (1.2s – 3.0s) */
+.lb-stadium-intro__layer--tunnel {
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.lb-stadium-intro--tunnel .lb-stadium-intro__layer--tunnel {
+  opacity: 1;
+  transform: scale(1.065);
+  transition: opacity 0.5s ease, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-stadium-intro--reveal .lb-stadium-intro__layer--tunnel,
+.lb-stadium-intro--dissolve .lb-stadium-intro__layer--tunnel {
+  opacity: 0;
+  transform: scale(1.14);
+  filter: blur(6px);
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+/* Phase 3: Reveal Pitch Layer — same image as Home Hero = zero visual jump */
+.lb-stadium-intro__layer--reveal {
+  z-index: 3;
+  opacity: 0;
+  transform: scale(1.0);
+}
+
+.lb-stadium-intro--reveal .lb-stadium-intro__layer--reveal,
+.lb-stadium-intro--dissolve .lb-stadium-intro__layer--reveal {
+  opacity: 1;
+  transform: scale(1.0);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Realistic Golden Hour / Daylight Lighting Sweep */
+.lb-stadium-intro__lighting {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 65% 45% at 82% 16%,
+      rgba(255, 246, 185, 0.32) 0%,
+      rgba(254, 236, 100, 0.15) 24%,
+      rgba(253, 224, 71, 0.04) 45%,
+      transparent 65%
+    );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.lb-stadium-intro--reveal .lb-stadium-intro__lighting,
+.lb-stadium-intro--dissolve .lb-stadium-intro__lighting {
+  opacity: 1;
+}
+
+/* Volumetric Sunbeam / Broadcast Sweep */
+.lb-stadium-intro__sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    transparent 36%,
+    rgba(255, 250, 210, 0.14) 50%,
+    rgba(255, 255, 255, 0.08) 56%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: translateX(-6%);
+  transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-stadium-intro--reveal .lb-stadium-intro__sweep,
+.lb-stadium-intro--dissolve .lb-stadium-intro__sweep {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+/* ------------------------------------------------------------
+   2. SOFT DARK OPENING VEIL (0.0s → 0.35s)
+   ------------------------------------------------------------ */
+.lb-stadium-intro__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: #06090E;
+  opacity: 1;
+  animation: lb-veil-fade-out 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes lb-veil-fade-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.lb-stadium-intro--tunnel .lb-stadium-intro__veil,
+.lb-stadium-intro--reveal .lb-stadium-intro__veil,
+.lb-stadium-intro--dissolve .lb-stadium-intro__veil {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ------------------------------------------------------------
+   3. SPORTS BROADCAST EDITORIAL TITLE CARD
+   ------------------------------------------------------------ */
+.lb-stadium-intro__title-card {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* "ENTERING" (Step 1) */
+.lb-stadium-intro__eyebrow {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: #F8FAFC;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  margin-bottom: 0.85rem;
+  padding: 0.3rem 0.9rem;
+  background: rgba(15, 23, 42, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-stadium-intro--step-1 .lb-stadium-intro__eyebrow,
+.lb-stadium-intro--step-2 .lb-stadium-intro__eyebrow,
+.lb-stadium-intro--step-3 .lb-stadium-intro__eyebrow {
+  opacity: 0.95;
+  transform: translateY(0);
+}
+
+/* "LAKSHYA BAPNA" (Step 2) */
+.lb-stadium-intro__name {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(2.6rem, 6.8vw, 5.4rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: #FFFFFF;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.9),
+    0 2px 8px rgba(0, 0, 0, 0.92);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-stadium-intro--step-2 .lb-stadium-intro__name,
+.lb-stadium-intro--step-3 .lb-stadium-intro__name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* "PORTFOLIO" (Step 3) */
+.lb-stadium-intro__sub {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(0.95rem, 2.1vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: #F1F5F9;
+  text-transform: uppercase;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.88);
+  margin-top: 0.85rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-stadium-intro--step-3 .lb-stadium-intro__sub {
+  opacity: 0.92;
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------
+   4. RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .lb-stadium-intro__title-card {
+    padding: 0 1rem;
+  }
+
+  .lb-stadium-intro__eyebrow {
+    letter-spacing: 0.26em;
+    margin-bottom: 0.6rem;
+  }
+
+  .lb-stadium-intro__name {
+    letter-spacing: 0.04em;
+  }
+
+  .lb-stadium-intro__sub {
+    letter-spacing: 0.22em;
+    margin-top: 0.65rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION ACCESSIBILITY FALLBACK
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .lb-stadium-intro {
+    transition: opacity 0.2s ease;
+  }
+
+  .lb-stadium-intro--dissolve {
+    opacity: 0;
+    transform: none;
+  }
+
+  .lb-stadium-intro__layer,
+  .lb-stadium-intro__veil,
+  .lb-stadium-intro__eyebrow,
+  .lb-stadium-intro__name,
+  .lb-stadium-intro__sub,
+  .lb-stadium-intro__sweep {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .is-reduced-motion .lb-stadium-intro__eyebrow,
+  .is-reduced-motion .lb-stadium-intro__name,
+  .is-reduced-motion .lb-stadium-intro__sub {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,191 @@
+/* ============================================================
+   LAKSHYA BAPNA — GLOBAL DESIGN SYSTEM & TOKENS (PHASE 6)
+   Theme: Premium Light Editorial × Football Broadcast Aesthetics × Modern AI/Dev
+   ============================================================ */
+
+:root {
+  /* Surface / Light System */
+  --bg-primary: #FAFAF9;       /* Warm editorial white/off-white */
+  --bg-surface: #FFFFFF;       /* Pure white card surface */
+  --bg-elevated: #F4F4F5;      /* Subtle hover / sub-panel background */
+  --bg-subtle: #F0F2F5;        /* Chip and muted background */
+  --bg-pitch-canvas: #0D2619;  /* Deep lush stadium pitch canvas */
+  --bg-pitch-surface: #103322; /* Pitch turf accent */
+
+  /* Titanium & Graphite Text Hierarchy */
+  --text-primary: #0F172A;     /* Deep slate / graphite primary text */
+  --text-secondary: #334155;   /* Titanium secondary text */
+  --text-muted: #64748B;       /* Refined slate metadata text */
+  --text-light: #94A3B8;       /* Subtle tertiary text */
+  --text-on-pitch: #F8FAFC;    /* Crisp white text for pitch elements */
+
+  /* Borders & Dividers */
+  --border-subtle: #E2E8F0;    /* Light clean card border */
+  --border-medium: #CBD5E1;    /* Interactive border */
+  --border-pitch: rgba(255, 255, 255, 0.22); /* Pitch lines */
+
+  /* Football Pitch Emerald System (Restrained & Luxury) */
+  --pitch-green: #059669;      /* Emerald primary accent */
+  --pitch-green-deep: #064E3B; /* Deep stadium green */
+  --pitch-green-light: #10B981;/* Vibrant field highlight */
+  --pitch-green-bg: #ECFDF5;   /* Soft emerald badge background */
+  --pitch-green-glow: rgba(5, 150, 105, 0.16);
+
+  /* Refined Gold (Signature Accents & Trophies) */
+  --gold-primary: #D97706;     /* Warm luxury gold */
+  --gold-deep: #B45309;        /* Deep gold border */
+  --gold-bg: #FFFBEB;          /* Soft gold badge background */
+  --gold-glow: rgba(217, 119, 6, 0.16);
+
+  /* Frost & Ice Accent */
+  --frost-primary: #0284C7;
+  --frost-bg: #F0F9FF;
+  --frost-glow: rgba(2, 132, 199, 0.16);
+
+  /* Typography Fonts */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-editorial: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Shadows (Apple / Linear restrained soft shadows) */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-card: 0 4px 14px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-elevated: 0 12px 28px rgba(15, 23, 42, 0.09), 0 4px 10px rgba(15, 23, 42, 0.04);
+  --shadow-pitch-glow: 0 0 24px rgba(5, 150, 105, 0.2);
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Easing */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* Links & Buttons */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Accessibility: Focus visible */
+:focus-visible {
+  outline: 2px solid var(--pitch-green);
+  outline-offset: 3px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* App Container */
+.lb-app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  position: relative;
+}
+
+/* Common Page Container */
+.lb-page-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .lb-page-container {
+    padding: 1.75rem 1rem 5rem;
+  }
+}
+
+/* Editorial Section Header */
+.lb-section-header {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.lb-section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--pitch-green);
+  background: var(--pitch-green-bg);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.85rem;
+}
+
+.lb-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.lb-section-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.6;
+}

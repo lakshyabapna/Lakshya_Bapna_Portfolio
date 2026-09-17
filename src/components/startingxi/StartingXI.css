@@ -1,0 +1,344 @@
+/* ==========================================================
+   STARTING XI — CINEMATIC STADIUM EXPERIENCE (PHASE 6.11)
+   Full-page daylight stadium backdrop — tactical pitch inside a
+   real football stadium with dark glass dossier panel.
+   ========================================================== */
+
+/* ── Root — full viewport canvas ── */
+.lb-xi-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #071324;
+  overflow-x: hidden;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   1. STADIUM BACKGROUND LAYER (fixed, full bleed)
+   ========================================================== */
+.lb-xi-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #071324;
+}
+
+.lb-xi-bg-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lb-xi-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Start slightly lower so more pitch is visible at the bottom */
+  object-position: center 20%;
+  image-rendering: -webkit-optimize-contrast;
+  /* Slightly brighter — the pitch lives in this stadium */
+  filter: contrast(1.02) saturate(1.1) brightness(0.88);
+  transform: translate3d(0, 0, 0);
+}
+
+/* ==========================================================
+   2. ATMOSPHERIC OVERLAYS
+   ========================================================== */
+.lb-xi-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Navbar readability */
+.lb-xi-atm__top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 19, 36, 0.60) 0%,
+    rgba(7, 19, 36, 0.12) 65%,
+    transparent 100%
+  );
+}
+
+/* Subtle center content scrim */
+.lb-xi-atm__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(7, 19, 36, 0.14) 25%,
+    rgba(7, 19, 36, 0.20) 55%,
+    rgba(7, 19, 36, 0.16) 80%,
+    rgba(7, 19, 36, 0.38) 100%
+  );
+}
+
+/* Bottom ground atmosphere */
+.lb-xi-atm__bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 220px;
+  background: linear-gradient(
+    0deg,
+    rgba(7, 19, 36, 0.60) 0%,
+    transparent 100%
+  );
+}
+
+/* ==========================================================
+   3. AMBIENT EDITORIAL PHRASES
+   ========================================================== */
+.lb-xi-ambient-phrases {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.lb-xi-phrase {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.11);
+  text-transform: uppercase;
+  font-style: italic;
+  user-select: none;
+}
+
+.lb-xi-phrase--tl {
+  top: 20%;
+  left: 2%;
+}
+
+.lb-xi-phrase--br {
+  bottom: 9%;
+  right: 2%;
+  text-align: right;
+}
+
+/* ==========================================================
+   4. PAGE CONTENT (scrollable, above fixed layers)
+   ========================================================== */
+.lb-xi-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 5.5rem 1.75rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   5. EDITORIAL HEADER
+   ========================================================== */
+.lb-xi-header {
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-xi-header--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Eyebrow pill */
+.lb-xi-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.70rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.10);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  padding: 0.30rem 0.82rem;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.lb-xi-eyebrow-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 7px #10B981;
+  flex-shrink: 0;
+  animation: xi-dot-pulse 2.2s ease infinite;
+}
+
+@keyframes xi-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.lb-xi-eyebrow-divider {
+  opacity: 0.35;
+}
+
+.lb-xi-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.40);
+}
+
+.lb-xi-subtitle {
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 560px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* ==========================================================
+   6. MAIN GRID LAYOUT (Pitch + Dossier)
+   ========================================================== */
+.lb-xi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .lb-xi-grid {
+    grid-template-columns: 1fr 370px;
+    gap: 22px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .lb-xi-grid {
+    grid-template-columns: 1fr 395px;
+  }
+}
+
+.lb-xi-pitch-col {
+  min-width: 0;
+  position: relative;
+  width: 100%;
+}
+
+.lb-xi-dossier-col {
+  min-width: 0;
+  position: sticky;
+  top: 80px;
+}
+
+/* ==========================================================
+   7. DESKTOP / MOBILE SWITCH
+   ========================================================== */
+.lb-xi-desktop-view {
+  display: block;
+}
+
+.lb-xi-mobile-view {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .lb-xi-desktop-view {
+    display: none;
+  }
+  .lb-xi-mobile-view {
+    display: block;
+  }
+}
+
+/* ==========================================================
+   8. MOBILE CONTENT ADJUSTMENTS
+   ========================================================== */
+@media (max-width: 639px) {
+  .lb-xi-content {
+    padding: 4.5rem 1rem 2rem;
+  }
+
+  .lb-xi-phrase {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.08);
+  }
+
+  .lb-xi-phrase--br {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   9. REDUCED MOTION
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .lb-xi-header {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .lb-xi-eyebrow-dot {
+    animation: none;
+  }
+}
+
+/* ==========================================================
+   10. PITCH + MOBILE CONTENT ENTRANCE ANIMATIONS
+   ========================================================== */
+.lb-xi-desktop-view--hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.lb-xi-desktop-view--visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-xi-mobile-view--hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.lb-xi-mobile-view--visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lb-xi-desktop-view--hidden,
+  .lb-xi-desktop-view--visible,
+  .lb-xi-mobile-view--hidden,
+  .lb-xi-mobile-view--visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
